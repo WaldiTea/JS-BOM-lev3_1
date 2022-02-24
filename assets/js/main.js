@@ -4,15 +4,19 @@ let catPosition = 0;
 let moveForward;
 let moveBackward;
 let toLeft = true;
-let speed = 1;
+let walk = true;
+let speed;
 
 catWalk = () => {
-  if(toLeft === true) {
-    moveForward = setInterval(forward, 1);
-  } else {
-    moveBackward = setInterval(backward, 1);
+  speed = 1;
+  if(walk === true) {
+    if(toLeft === true) {
+      moveForward = setInterval(forward, 1);
+    } else {
+      moveBackward = setInterval(backward, 1);
+    }
   }
-  
+  walk = false;
 }
 
 function forward() {
@@ -40,6 +44,7 @@ function backward() {
 pause = () => {
   clearInterval(moveForward);
   clearInterval(moveBackward);
+  walk = true;
 }
 
 turn = () => {
@@ -52,8 +57,10 @@ turn = () => {
     toLeft = false;
     moveBackward = setInterval(backward, 1);
   }
+  walk = false;
 }
 
 catSpeed = () => {
   speed = 7;
+  walk = false;
 }
